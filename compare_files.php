@@ -22,16 +22,16 @@ class compareFolders{
 	public function __construct($URL1, $URL2, $URL1Title = 'URL1', $URL2Title = 'URL2'){
 		$errors = '';
 		
-		//ADD FILENAMES TO IGNORE HERE:
-		$ignoreFiles = array(
-			'file_list.php'
-		);
-		
 		//Check if fiename is found in the $ignoreFiles array.
 		function ignoreFile($filename){
-			global $ignoreFiles;
+			//ADD FILENAMES TO IGNORE HERE:
+			$ignoreFiles = array(
+				'file_list.php',
+				'test.txt'
+			);
 			for($i = 0; $i < count($ignoreFiles); $i++){
-				if (stripos($filename, $ignoreFiles[$i]) !== false){
+				if (stripos($filename, trim($ignoreFiles[$i])) !== false){
+					echo "a";
 					return true;
 				}
 			}
@@ -224,26 +224,28 @@ class compareFolders{
 				$tmpS.= "	<th>Date</th>".PHP_EOL;
 				$tmpS.= "</tr>".PHP_EOL;
 				for($i = 0; $i < count($date_differences); $i++){
-					$dateclass = '';
-					$sizeclass = '';
-					$filterClass = '';
-					if ($date_differences[$i]["s1_date"] != $date_differences[$i]["s2_date"]){
-						$dateclass = " mismatch";
-						$filterClass.= " datediff";
+					if (ignoreFile($date_differences[$i]["filename"]) == false){
+						$dateclass = '';
+						$sizeclass = '';
+						$filterClass = '';
+						if ($date_differences[$i]["s1_date"] != $date_differences[$i]["s2_date"]){
+							$dateclass = " mismatch";
+							$filterClass.= " datediff";
+						}
+						if ($date_differences[$i]["dev_size"] != $date_differences[$i]["prod_size"]){
+							$sizeclass = " mismatch";
+							$filterClass.= " sizediff";
+						}
+						$tmpS.= "<tr class='diffrow".$filterClass."'>".PHP_EOL;
+						$tmpS.= "	<td>".$date_differences[$i]["filename"]."</td>".PHP_EOL;
+						$tmpS.= "	<th class='spacer'></th>".PHP_EOL;
+						$tmpS.= "	<td class='".$dateclass."'>".$date_differences[$i]["s1_date"]."</td>".PHP_EOL;
+						$tmpS.= "	<td class='ac".$sizeclass."'>".$date_differences[$i]["dev_size"]."</td>".PHP_EOL;
+						$tmpS.= "	<th class='spacer'></th>".PHP_EOL;
+						$tmpS.= "	<td class='".$dateclass."'>".$date_differences[$i]["s2_date"]."</td>".PHP_EOL;
+						$tmpS.= "	<td class='ac".$sizeclass."'>".$date_differences[$i]["prod_size"]."</td>".PHP_EOL;
+						$tmpS.= "</tr>".PHP_EOL;
 					}
-					if ($date_differences[$i]["dev_size"] != $date_differences[$i]["prod_size"]){
-						$sizeclass = " mismatch";
-						$filterClass.= " sizediff";
-					}
-					$tmpS.= "<tr class='diffrow".$filterClass."'>".PHP_EOL;
-					$tmpS.= "	<td>".$date_differences[$i]["filename"]."</td>".PHP_EOL;
-					$tmpS.= "	<th class='spacer'></th>".PHP_EOL;
-					$tmpS.= "	<td class='".$dateclass."'>".$date_differences[$i]["s1_date"]."</td>".PHP_EOL;
-					$tmpS.= "	<td class='ac".$sizeclass."'>".$date_differences[$i]["dev_size"]."</td>".PHP_EOL;
-					$tmpS.= "	<th class='spacer'></th>".PHP_EOL;
-					$tmpS.= "	<td class='".$dateclass."'>".$date_differences[$i]["s2_date"]."</td>".PHP_EOL;
-					$tmpS.= "	<td class='ac".$sizeclass."'>".$date_differences[$i]["prod_size"]."</td>".PHP_EOL;
-					$tmpS.= "</tr>".PHP_EOL;
 				}
 			}
 			$tmpS.= "</table>".PHP_EOL;
@@ -264,19 +266,20 @@ class compareFolders{
 				$tmpS.= "<th>Size</th>".PHP_EOL;
 				$tmpS.= "</tr>".PHP_EOL;
 				for($i = 0; $i < count($modified_recently);$i++){
-					$class = '';
-					if ($modified_recently[$i]["level"] == $URL1Title){
-						$class = 'url1';
-					} else {
-						$class = 'url2';
+					if (ignoreFile($modified_recently[$i]["filename"]) == false){
+						$class = '';
+						if ($modified_recently[$i]["level"] == $URL1Title){
+							$class = 'url1';
+						} else {
+							$class = 'url2';
+						}
+						$tmpS.= "<tr>".PHP_EOL;
+						$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["level"]."</td>".PHP_EOL;
+						$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["filename"]."</td>".PHP_EOL;
+						$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["date"]."</td>".PHP_EOL;
+						$tmpS.= "<td class='ac ".$class."'>".$modified_recently[$i]["size"]."</td>".PHP_EOL;
+						$tmpS.= "</tr>".PHP_EOL;
 					}
-					$tmpS.= "<tr>".PHP_EOL;
-					$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["level"]."</td>".PHP_EOL;
-					$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["filename"]."</td>".PHP_EOL;
-					$tmpS.= "<td class='".$class."'>".$modified_recently[$i]["date"]."</td>".PHP_EOL;
-					$tmpS.= "<td class='ac ".$class."'>".$modified_recently[$i]["size"]."</td>".PHP_EOL;
-					$tmpS.= "</tr>".PHP_EOL;
-					
 				}
 			}
 			$tmpS.= "</table>".PHP_EOL;
