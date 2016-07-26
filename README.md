@@ -5,9 +5,10 @@ Last Updated = 7/25/16
 Created By: Blastroid
 
 Instructions:
-1. Copy the file_list.php file to the root directory of 2 websites you want to compare.
 
-2. Use the following code:
+Copy the file_list.php file to the root directory of 2 websites you want to compare.
+
+Use the following code:
 	$compare = new compareFolders('http://URL1/file_list.php', 'http://URL2/file_list.php');
 	
 	Where it says URL1 change to the website #1 URL
