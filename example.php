@@ -56,5 +56,5 @@ table#missingTableData td, table#fileDifferencesData td, table#filesModifiedData
 <?php
 include_once('compare_files.php');
 
-$test = new compareFolders('http://127.0.0.1/A/file_list.php', 'http://127.0.0.1/B/file_list.php', 'Website 1', 'Website 2');
+$test = new compareFolders('bwat.info/other/class_compare_sites/A/file_list.php', 'bwat.info/other/class_compare_sites/B/file_list.php');
 ?>
