@@ -197,10 +197,6 @@ class compareFolders{
 			//FILE DIFFERENCES:
 			$tmpS = '';
 			$tmpS = "<h3 style='display:inline;'><br/>FILE DIFFERENCES:</h3><br/>".PHP_EOL;
-			$tmpS.= "<b>Filter:</b> ".PHP_EOL;
-			$tmpS.= "<span onclick=\\\"$('.diffrow').show();\\\"><input type='radio' name='difffilter' value='diffrow' checked />Both</span>".PHP_EOL;
-			$tmpS.= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\\\"$('.diffrow').hide(); $('.datediff').show();\\\"><input type='radio' name='difffilter' value='datediff' />Date</span>".PHP_EOL;
-			$tmpS.= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\\\"$('.diffrow').hide(); $('.sizediff').show();\\\"><input type='radio' name='difffilter' value='sizediff' />Size</span>".PHP_EOL;
 			$tmpS.= "<table id='fileDifferencesData' border='1'>".PHP_EOL;
 			if (count($date_differences) == 0){
 				$tmpS.= "<tr><td style='background-color:lightgreen;'>No file differences</td></tr>".PHP_EOL;
