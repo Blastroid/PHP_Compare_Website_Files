@@ -6,6 +6,7 @@ Created By: Blastroid
 
 Instructions:
 1. Copy the file_list.php file to the root directory of 2 websites you want to compare.
+
 2. Use the following code:
 	$compare = new compareFolders('http://URL1/file_list.php', 'http://URL2/file_list.php');
 	
@@ -16,3 +17,5 @@ Instructions:
 		$compare = new compareFolders('http://URL1/file_list.php', 'http://URL2/file_list.php', 'Website 1', 'Website 2');
 	
 	Run the class where you want the 3 HTML tables to be written.
+
+Note: In the compare_file.php you can add to the array $ignoreFiles to ignore files.
