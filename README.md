@@ -20,3 +20,6 @@ Use the following code:
 	Run the class where you want the 3 HTML tables to be written.
 
 Note: In the compare_file.php you can add to the array $ignoreFiles to ignore files.
+
+
+
