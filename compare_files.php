@@ -26,8 +26,7 @@ class compareFolders{
 		function ignoreFile($filename){
 			//ADD FILENAMES TO IGNORE HERE:
 			$ignoreFiles = array(
-				'file_list.php',
-				'test.txt'
+				'file_list.php'
 			);
 			for($i = 0; $i < count($ignoreFiles); $i++){
 				if (stripos($filename, trim($ignoreFiles[$i])) !== false){
