@@ -30,7 +30,6 @@ class compareFolders{
 			);
 			for($i = 0; $i < count($ignoreFiles); $i++){
 				if (stripos($filename, trim($ignoreFiles[$i])) !== false){
-					echo "a";
 					return true;
 				}
 			}
