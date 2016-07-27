@@ -1,6 +1,8 @@
 # PHP_Compare_Website_Files
 Compare similar website files. Shows missing files, different files (modified date / size), and files modified in the last 7 days.
 
+http://bwat.info/
+
 Last Updated = 7/25/16
 Created By: Blastroid
 
@@ -23,6 +25,8 @@ $compare = new compareFolders('http://URL1/file_list.php', 'http://URL2/file_lis
 Run the class where you want the 3 HTML tables to be written.
 
 Note: In the compare_file.php you can add to the array $ignoreFiles to ignore files.
+
+See http://bwat.info/ for more information.
 
 
 
